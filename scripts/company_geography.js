@@ -1,7 +1,9 @@
 $.ajax({
         url:'data/funded_companies.csv',
         success: function (data) {
-                alert(data);
+                var funded_companies_csv_string = data;
+                var funded_companies = $.csv.toArray(funded_companies_csv_string);
+                alert("done");
         },
 });
 
