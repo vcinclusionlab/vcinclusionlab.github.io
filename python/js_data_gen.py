@@ -34,7 +34,8 @@ def women_led_funded_us(input_path: str, output_path: str):  # -> Json Object
 
 
 def main():
-    women_led_funded_us('./funded_companies_women_led.csv', './output.json')
+    women_led_funded_us('./funded_companies_women_led.csv',
+                        './json_data/funding_rounds_us.json')
 
 
 if __name__ == '__main__':
