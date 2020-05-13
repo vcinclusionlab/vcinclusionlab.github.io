@@ -9,18 +9,15 @@ const fills = {
     H: "#9B2C2C",
 }
 
-const getFillKey = ratio => {
-    if (ratio < 24) return 'A'
-    if (ratio < 28) return 'B'
-    if (ratio < 29.5) return 'C'
-    if (ratio < 32.1) return 'D'
-    if (ratio < 33.2) return 'E'
-    if (ratio < 34) return 'F'
-    if (ratio < 40) return 'G'
+const thresholds = [24, 28, 29.5, 32.1, 33.2, 34, 40]
+
+const getFillKey = (amt, thresholds) => {
+    const keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    for (const [i, thresh] of thresholds.entries()) {
+        if (amt < thresh) return keys[i]
+    }
     return 'H'
 }
-
-
 
 const rawData = {
     "CA": {
@@ -344,7 +341,7 @@ const processData = raw => {
         data[state] = {
             ratio,
             total: val['funded_companies_f'] + val['funded_companies_m'],
-            fillKey: getFillKey(ratio)
+            fillKey: getFillKey(ratio, thresholds)
         }
     }
     return data
